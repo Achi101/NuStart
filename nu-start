@@ -22,7 +22,7 @@ if [ "$answer" == "y" ];then echo -n "введите пароль для Keystor
 read keystorepassw
 echo -n "введите Keyring пароль Урсулы "
 read keyring
-echo -e "[Unit]\nDescription="NuCypher Node"\n[Service]\nUser=$USER\nType=simple\nEnvironment="NUCYPHER_WORKER_ETH_PASSWORD=$keystorepassw"\nEnvironment="NUCYPHER_KEYRING_PASSWORD=$keyring"\nExecStart=$HOME/nucypher-venv/bin/nucypher ursula run\nRestart=always\nRestartSec=3\n[Install]\nWantedBy=multi-user.target" > nucypher.txt
+echo -e "[Unit]\nDescription="NuCypher Node"\n[Service]\nUser=$USER\nType=simple\nEnvironment="NUCYPHER_WORKER_ETH_PASSWORD=$keystorepassw"\nEnvironment="NUCYPHER_KEYRING_PASSWORD=$keyring"\nExecStart=$HOME/nucypher-venv/bin/nucypher ursula run --teacher mainnet.nucypher.network\nRestart=always\nRestartSec=3\n[Install]\nWantedBy=multi-user.target" > nucypher.txt
 sudo mv nucypher.txt /etc/systemd/system/nucypher.service
 sudo systemctl daemon-reload
 sudo systemctl enable nucypher
